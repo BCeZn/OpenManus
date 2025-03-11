@@ -1,0 +1,12 @@
+services:
+  openmanus:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: openmanus-1
+    restart: unless-stopped
+    volumes:
+      - .:/app # 挂载整个代码到app路径下
+    tty: true
+    stdin_open: true
+    command: ["python", "main.py"]
