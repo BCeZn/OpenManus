@@ -1,5 +1,5 @@
 # 使用官方 Python 3.12 镜像作为基础镜像
-FROM python:3.12-slim
+FROM swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/python:3.12-slim
 
 # 设置工作目录
 WORKDIR /app
@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y \
     && rm -r /var/lib/apt/lists/* \
     && localedef -i zh_CN -c -f UTF-8 -A /usr/share/locale/locale.alias zh_CN.UTF-8
 
-# 克隆 OpenManus 仓库
+# 克隆 OpenManus 仓库, 只依赖里面的requirements.txt来安装依赖, 强烈建议实际运行时用实际代码来覆盖
 RUN git clone https://github.com/BCeZn/OpenManus.git .
 
 # 使用阿里云 PyPI 镜像源安装 Python 依赖
